@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday Varo 🎂</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: Arial, sans-serif;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd8e8,
+            #e8d7ff,
+            #d8f3ff
+        );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* =========================
+   START SCREEN
+========================= */
+
+#startScreen {
+    position: fixed;
+    inset: 0;
+
+    z-index: 999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd6e7,
+            #e9d8ff
+        );
+
+    transition: opacity .7s ease;
+}
+
+.start-box {
+    width: 85%;
+    max-width: 400px;
+
+    padding: 35px 25px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.9);
+
+    box-shadow:
+        0 15px 45px rgba(120,80,130,.2);
+}
+
+.start-bear {
+    font-size: 70px;
+
+    animation:
+        bounce 1.8s infinite;
+}
+
+.start-box h1 {
+    color: #e65d91;
+
+    font-size: 27px;
+}
+
+.start-box p {
+    color: #777;
+
+    line-height: 1.6;
+}
+
+.start-button {
+    border: none;
+
+    padding: 15px 30px;
+
+    margin-top: 15px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff82ae,
+            #a889ed
+        );
+
+    color: white;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    box-shadow:
+        0 8px 20px rgba(180,100,170,.3);
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   PAGE
+========================= */
+
+.page {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+
+    opacity: 0;
+
+    transform:
+        translateY(30px)
+        scale(.96);
+
+    pointer-events: none;
+
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
+
+.page.active {
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+    pointer-events: auto;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+    width: min(92vw, 520px);
+
+    max-height: 86vh;
+
+    overflow-y: auto;
+
+    padding: 30px 24px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background:
+        rgba(255,255,255,.87);
+
+    box-shadow:
+        0 15px 45px
+        rgba(100,70,120,.2);
+
+    backdrop-filter: blur(10px);
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+.decor {
+    font-size: 45px;
+
+    margin-bottom: 10px;
+
+    animation:
+        floating 2.5s ease-in-out infinite;
+}
+
+h1 {
+    color: #e65d91;
+
+    font-size: 29px;
+}
+
+p {
+    color: #555;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.next-button {
+    border: none;
+
+    padding: 13px 28px;
+
+    margin-top: 15px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff82ae,
+            #a889ed
+        );
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 18px
+        rgba(180,100,170,.25);
+}
+
+.next-button:active {
+    transform: scale(.94);
+}
+
+
+/* =========================
+   MUSIC BUTTON
+========================= */
+
+.music-button {
+    position: fixed;
+
+    top: 18px;
+    right: 18px;
+
+    z-index: 100;
+
+    width: 50px;
+    height: 50px;
+
+    padding: 0;
+    margin: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.9);
+
+    font-size: 22px;
+
+    box-shadow:
+        0 5px 15px
+        rgba(0,0,0,.1);
+}
+
+
+/* =========================
+   HEART
+========================= */
+
+.heart {
+    position: fixed;
+
+    bottom: -40px;
+
+    z-index: 50;
+
+    pointer-events: none;
+
+    animation:
+        heartUp 4s linear forwards;
+}
+
+@keyframes heartUp {
+
+    0% {
+        transform:
+            translateY(0)
+            scale(.7);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            scale(1.3)
+            rotate(20deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes bounce {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes floating {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+</style>
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     AUDIO
+
+     PENTING:
+     File harus bernama:
+     lagu_varo.mp3
+
+     Dan harus berada satu folder dengan index.html.
+================================================== -->
+
+<audio
+    id="birthdaySong"
+    src="./lagu_varo.mp3"
+    loop
+    preload="auto">
+</audio>
+
+
+<!-- ==================================================
+     START SCREEN
+================================================== -->
+
+<div id="startScreen">
+
+    <div class="start-box">
+
+        <div class="start-bear">
+            🧸
+        </div>
+
+        <h1>
+            A little surprise for Varo 💗
+        </h1>
+
+        <p>
+            Tap the button to open your
+            birthday surprise 🎂✨
+        </p>
+
+        <button
+            class="start-button"
+            onclick="startBirthday()">
+
+            🎵 Tap to Start
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ==================================================
+     MUSIC BUTTON
+================================================== -->
+
+<button
+    class="music-button"
+    id="musicButton"
+    onclick="toggleMusic()">
+
+    🔊
+
+</button>
+
+
+<!-- ==================================================
+     PAGE 1
+================================================== -->
+
+<section
+    class="page active"
+    id="page1">
+
+    <div class="card">
+
+        <div class="decor">
+            🧸🌸💗🌷
+        </div>
+
+        <h1>
+            happy birthday, Varo! 🎂🥳
+        </h1>
+
+        <p>
+            selamattt ulangg tahunn yaaa, Varooo!
+            <br><br>
+
+            happy sweet seventeen!
+            panjang umurr, sehat selalu,
+            dan semogaa semua yang kauu mauu
+            bisa tercapai.
+
+            semogaa tahun ini lebih banyakk
+            hal seru, cerita baru,
+            and good memories buat kauu.
+        </p>
+
+        <button
+            class="next-button"
+            onclick="nextPage()">
+
+            Next 💗
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     PAGE 2
+================================================== -->
+
+<section
+    class="page"
+    id="page2">
+
+    <div class="card">
+
+        <div class="decor">
+            🐻🌸💐✨
+        </div>
+
+        <p>
+            makasihh udahh jadi teman yang asikk,
+            baikk, dan lumayan perhatiann selama ini,
+            walaupun kauu ndak peka teruss
+            dan ngeselin dikit wkwk 😭.
+        </p>
+
+        <p>
+            jangann suka marah²,
+            nantii kau cepett ubanan 😭😭
+        </p>
+
+        <p>
+            semogaa kitaa tetap bisaa temenan
+            dan punya makin banyak cerita
+            random lainnyaa.
+        </p>
+
+        <button
+            class="next-button"
+            onclick="nextPage()">
+
+            Next 🎀
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     PAGE 3
+================================================== -->
+
+<section
+    class="page"
+    id="page3">
+
+    <div class="card">
+
+        <div class="decor">
+            🎉🧸💗🌷
+        </div>
+
+        <h1>
+            Enjoy your day! 🎉
+        </h1>
+
+        <p>
+            enjoy your day,
+            jangan lupa have fun! 🎉
+        </p>
+
+        <p>
+            i always support whatever choice
+            you make, as long as it's good for you.
+        </p>
+
+        <p>
+            <b>
+                happy birthday once again,
+                Varo! 🤍✨
+            </b>
+        </p>
+
+        <button
+            class="next-button"
+            onclick="restart()">
+
+            ↻ Replay 🎂
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     CONFETTI
+================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js">
+</script>
+
+
+<script>
+
+/* =========================
+   VARIABLES
+========================= */
+
+let currentPage = 1;
+
+const song =
+    document.getElementById(
+        "birthdaySong"
+    );
+
+const startScreen =
+    document.getElementById(
+        "startScreen"
+    );
+
+const musicButton =
+    document.getElementById(
+        "musicButton"
+    );
+
+
+/* =========================
+   START
+========================= */
+
+function startBirthday() {
+
+    /*
+     BAGIAN TERPENTING:
+
+     Karena fungsi ini dipanggil
+     langsung dari tombol yang
+     ditekan pengguna, browser
+     mengizinkan audio dimainkan.
+    */
+
+    song.volume = 1;
+
+    song.currentTime = 0;
+
+    song.play()
+        .then(function() {
+
+            musicButton.textContent = "🔊";
+
+        })
+        .catch(function(error) {
+
+            console.log(
+                "Audio gagal:",
+                error
+            );
+
+            musicButton.textContent = "🎵";
+
+        });
+
+
+    /*
+     Hilangkan layar pembuka
+    */
+
+    startScreen.style.opacity = "0";
+
+    setTimeout(function() {
+
+        startScreen.style.display =
+            "none";
+
+    }, 700);
+}
+
+
+/* =========================
+   MUSIC
+========================= */
+
+function toggleMusic() {
+
+    if (song.paused) {
+
+        song.play()
+            .then(function() {
+
+                musicButton.textContent =
+                    "🔊";
+
+            })
+            .catch(function() {
+
+                alert(
+                    "Tekan tombol Start terlebih dahulu 🎵"
+                );
+
+            });
+
+    } else {
+
+        song.pause();
+
+        musicButton.textContent =
+            "🎵";
+    }
+}
+
+
+/* =========================
+   PAGE
+========================= */
+
+function showPage(number) {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(function(page) {
+
+            page.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    document
+        .getElementById(
+            "page" + number
+        )
+        .classList.add(
+            "active"
+        );
+}
+
+
+/* =========================
+   NEXT
+========================= */
+
+function nextPage() {
+
+    if (currentPage < 3) {
+
+        currentPage++;
+
+        showPage(currentPage);
+
+        if (currentPage === 3) {
+
+            celebration();
+
+        }
+    }
+}
+
+
+/* =========================
+   CELEBRATION
+========================= */
+
+function celebration() {
+
+    if (
+        typeof confetti !==
+        "undefined"
+    ) {
+
+        confetti({
+
+            particleCount: 180,
+
+            spread: 100,
+
+            origin: {
+                y: .6
+            }
+
+        });
+
+    }
+
+
+    /*
+     HATI
+    */
+
+    for (
+        let i = 0;
+        i < 20;
+        i++
+    ) {
+
+        setTimeout(
+            createHeart,
+            i * 170
+        );
+
+    }
+}
+
+
+function createHeart() {
+
+    const heart =
+        document.createElement(
+            "div"
+        );
+
+    heart.className =
+        "heart";
+
+
+    const emojis = [
+        "💗",
+        "💖",
+        "💕",
+        "💞",
+        "🤍"
+    ];
+
+
+    heart.textContent =
+        emojis[
+            Math.floor(
+                Math.random() *
+                emojis.length
+            )
+        ];
+
+
+    heart.style.left =
+        Math.random() * 100 +
+        "vw";
+
+
+    heart.style.fontSize =
+        (18 + Math.random() * 15) +
+        "px";
+
+
+    document.body.appendChild(
+        heart
+    );
+
+
+    setTimeout(function() {
+
+        heart.remove();
+
+    }, 5000);
+}
+
+
+/* =========================
+   REPLAY
+========================= */
+
+function restart() {
+
+    document
+        .getElementById(
+            "page" + currentPage
+        )
+        .classList.remove(
+            "active"
+        );
+
+
+    currentPage = 1;
+
+    showPage(1);
+}
+
+</script>
+
+</body>
+</html>
